@@ -1,0 +1,57 @@
+/* Marca de Mudara: cambia estos valores y se re-colorea todo el sitio.
+   main.css solo usa estas variables, nunca colores ni fuentes directos.
+   Paleta actual: escala de grises del wireframe, hasta recibir la marca de Dalid. */
+:root {
+  /* Color */
+  --color-fondo: #FFFFFF;
+  --color-fondo-alterno: #F4F4F5;
+  --color-fondo-oscuro: #18181B;
+  --color-texto: #18181B;
+  --color-texto-secundario: #52525B;
+  --color-texto-sobre-oscuro: #FFFFFF;
+  --color-texto-secundario-sobre-oscuro: #D4D4D8;
+  --color-borde: #D4D4D8;
+  --color-borde-fuerte: #71717A;
+  --color-acento: #18181B;
+  --color-acento-hover: #3F3F46;
+  --color-texto-sobre-acento: #FFFFFF;
+  --color-placeholder: #E4E4E7;
+  --color-placeholder-linea: #A1A1AA;
+  --color-pendiente-fondo: #E4E4E7;
+  --color-pendiente-borde: #52525B;
+  --color-sombra: rgba(0, 0, 0, 0.2);
+
+  /* Tipografía */
+  --fuente-titulos: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fuente-texto: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --peso-titulos: 800;
+  --texto-h1: 2.5rem;
+  --texto-h2: 2rem;
+  --texto-cuerpo: 1rem;
+  --texto-intro: 1.0625rem;
+
+  /* Forma */
+  --radio: 12px;
+  --radio-chico: 8px;
+  --radio-grande: 16px;
+  --radio-pildora: 999px;
+
+  /* Espaciado */
+  --contenedor: 1200px;
+  --margen-lateral: 20px;
+  --seccion-y: 48px;
+  --espacio: 20px;
+  --alto-boton: 44px;
+  --alto-encabezado: 77px;
+  --alto-barra-movil: 72px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --texto-h1: 3.5rem;
+    --texto-h2: 2.5rem;
+    --texto-intro: 1.125rem;
+    --margen-lateral: 24px;
+    --seccion-y: 88px;
+  }
+}

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Vacío a propósito mientras el sitio está en revisión con noindex.
+     Al lanzar, agregar: <url><loc>https://mudara.com.mx/</loc></url> -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+</urlset>

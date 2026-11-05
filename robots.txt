@@ -1,0 +1,5 @@
+# No bloquear con Disallow: los buscadores deben poder leer la etiqueta noindex de cada página.
+User-agent: *
+Allow: /
+
+# Al lanzar, agregar: Sitemap: https://mudara.com.mx/sitemap.xml
