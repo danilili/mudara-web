@@ -220,6 +220,9 @@ input, select, textarea, button { font: inherit; }
 
 /* Página interior */
 .pagina-simple { max-width: 860px; }
+.terminos { display: flex; flex-direction: column; gap: 16px; }
+.terminos h2 { margin-top: 24px; font-size: 1.375rem; line-height: 1.25; }
+.terminos ul { display: flex; flex-direction: column; gap: 8px; padding-left: 20px; list-style: disc; }
 
 @media (min-width: 560px) {
   .franja-rejilla, .galeria, .rejilla-tarjetas { grid-template-columns: repeat(2, 1fr); }
@@ -263,3 +266,26 @@ input, select, textarea, button { font: inherit; }
   html { scroll-behavior: auto; }
   * { transition: none !important; }
 }
+
+/* Cotizador */
+.cotizador-form { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+.cotizador-form fieldset {
+  display: flex; flex-direction: column; gap: 16px; min-width: 0; margin: 0; padding: 20px;
+  border: 1px solid var(--color-borde); border-radius: var(--radio);
+}
+.cotizador-form legend { padding-inline: 8px; font-family: var(--fuente-titulos); font-size: 1.125rem; font-weight: 700; }
+.rejilla-numeros { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 16px; align-items: end; }
+.acceso { display: flex; flex-direction: column; gap: 4px; align-self: start; }
+.acceso-titulo { font-size: .875rem; font-weight: 600; }
+.supuestos summary, .borrador summary { min-height: 44px; padding-block: 10px; font-weight: 600; cursor: pointer; }
+.cotizador-resultado {
+  display: flex; flex-direction: column; gap: 16px; min-width: 0; padding: 20px;
+  background: var(--color-fondo-alterno); border-radius: var(--radio-grande);
+}
+.resultado-titulo { font-size: 1.375rem; }
+.cotizador-resultado h4 { margin: 0; font-size: 1.0625rem; }
+.tarjeta .precio-total { font-family: var(--fuente-titulos); font-size: 2rem; font-weight: var(--peso-titulos); color: var(--color-texto); }
+.desglose { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; margin: 0; font-size: .9375rem; }
+.desglose dt { color: var(--color-texto-secundario); }
+.desglose dd { margin: 0; text-align: right; }
+.borrador pre { margin: 0; padding: 12px; overflow-x: auto; white-space: pre-wrap; background: var(--color-fondo); border-radius: var(--radio-chico); font: inherit; font-size: .875rem; }

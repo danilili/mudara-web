@@ -44,7 +44,7 @@ Cada commit en `main` se publica automáticamente en GitHub Pages.
 
 ## Lista para lanzar
 
-- [ ] Quitar `<meta name="robots" content="noindex, nofollow">` de `index.html` y `aviso-de-privacidad.html`
+- [ ] Quitar `<meta name="robots" content="noindex, nofollow">` de `index.html`, `aviso-de-privacidad.html` y `terminos.html`
 - [ ] Poner `modoRevision: false` y llenar `config.js`, incluido `urlSitio`
 - [ ] Conectar `formularioEndpoint` y probar que llegue el correo
 - [ ] Reemplazar todo lo que tenga `class="pendiente"` en los HTML

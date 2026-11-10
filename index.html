@@ -21,7 +21,7 @@
 <meta name="twitter:description" content="Tranquilidad y confianza en tu mudanza. Cotiza por WhatsApp o con nuestro formulario.">
 <meta name="twitter:image" content="https://danilili.github.io/mudara-web/assets/img/og.jpg">
 <link rel="stylesheet" href="assets/css/tokens.css">
-<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/main.css?v=4">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -273,7 +273,7 @@
   <div class="contenedor cotizar-rejilla">
     <div class="cotizar-texto">
       <h2>Cotiza tu mudanza</h2>
-      <p class="intro">Cuéntanos de dónde a dónde y qué vas a mover. Después te pediremos fotos o video por WhatsApp para darte tu cotización.</p>
+      <p class="intro">Cuéntanos qué vas a mover, de dónde a dónde y cuándo. Te damos una estimación al momento y la confirmamos por WhatsApp.</p>
       <a class="boton boton-claro boton-grande" href="#cotizar" data-whatsapp>Prefiero WhatsApp</a>
       <div class="cotizar-datos">
         <span>WhatsApp: <span class="pendiente" data-config="whatsapp">[NÚMERO]</span></span>
@@ -282,53 +282,138 @@
       </div>
     </div>
 
-    <form class="formulario" data-formulario>
-      <label class="campo">Nombre
-        <input type="text" name="nombre" autocomplete="name" required data-mensaje="Nombre" data-error="Escribe tu nombre.">
-      </label>
-      <label class="campo">WhatsApp
-        <input type="tel" name="whatsapp" autocomplete="tel-national" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" placeholder="10 dígitos" required data-mensaje="WhatsApp" data-error="Escribe tu WhatsApp a 10 dígitos, sin espacios.">
-      </label>
-      <label class="campo">¿Qué vas a mover?
-        <select name="mover" required data-mensaje="Qué voy a mover" data-error="Elige qué vas a mover.">
-          <option value="">Elige una opción</option>
-          <option>Casa</option>
-          <option>Departamento</option>
-          <option>Oficina</option>
-          <option>Flete / pocas cosas</option>
-        </select>
-      </label>
-      <label class="campo">Fecha tentativa
-        <input type="date" name="fecha" data-mensaje="Fecha tentativa" data-error="Elige una fecha de hoy en adelante.">
-      </label>
-      <label class="campo">Origen
-        <input type="text" name="origen" placeholder="Colonia y ciudad" required data-mensaje="Origen" data-error="Escribe la colonia y ciudad de origen.">
-      </label>
-      <label class="campo">Destino
-        <input type="text" name="destino" placeholder="Colonia y ciudad" required data-mensaje="Destino" data-error="Escribe la colonia y ciudad de destino.">
-      </label>
-      <label class="campo campo-ancho">¿Hay escaleras o elevador?
-        <select name="acceso" data-mensaje="Escaleras/elevador">
-          <option value="">Elige una opción</option>
-          <option>Planta baja en ambos lados</option>
-          <option>Escaleras</option>
-          <option>Elevador</option>
-        </select>
-      </label>
-      <label class="campo campo-ancho">Comentarios
-        <textarea name="comentarios" rows="4" placeholder="Muebles grandes, piano, cosas frágiles…" data-mensaje="Comentarios"></textarea>
-      </label>
+    <form class="formulario cotizador-form" data-formulario data-cotizador>
+      <fieldset>
+        <legend>¿Qué vas a mover?</legend>
+        <label class="campo">Tipo de mudanza
+          <select name="tipo">
+            <option value="casa">Casa</option>
+            <option value="departamento">Departamento</option>
+            <option value="oficina">Oficina</option>
+            <option value="flete">Solo unas cuantas cosas (flete)</option>
+          </select>
+        </label>
+        <div class="rejilla-numeros" data-tipos="departamento">
+          <label class="campo">¿En qué piso está?
+            <select name="origenPiso">
+              <option value="1">Planta baja</option><option value="2">2.º piso</option><option value="3">3.er piso</option><option value="4">4.º piso</option><option value="5">5.º piso o más</option>
+            </select>
+          </label>
+          <label class="campo-acepto"><input type="checkbox" name="origenElevador"> <span>El edificio tiene elevador</span></label>
+        </div>
+        <div class="rejilla-numeros" data-tipos="casa departamento">
+          <label class="campo">Recámaras <input type="number" name="recamaras" min="0" max="20" value="2" inputmode="numeric"></label>
+          <label class="campo">Salas <input type="number" name="salas" min="0" max="20" value="1" inputmode="numeric"></label>
+          <label class="campo">Comedores <input type="number" name="comedores" min="0" max="20" value="0" inputmode="numeric"></label>
+          <label class="campo">Cocinas <input type="number" name="cocinas" min="0" max="20" value="1" inputmode="numeric"></label>
+          <label class="campo">Estudios o cuartos extra <input type="number" name="estudios" min="0" max="20" value="0" inputmode="numeric"></label>
+          <label class="campo" data-tipos="casa">Bodegas <input type="number" name="bodegas" min="0" max="20" value="0" inputmode="numeric"></label>
+        </div>
+        <div data-tipos="casa departamento">
+          <label class="campo-acepto"><input type="checkbox" name="especiales"> <span>Incluye instrumentos musicales grandes (como piano o batería), caja fuerte u obras de arte</span></label>
+          <label class="campo-acepto"><input type="checkbox" name="embalado"> <span>Necesito que embalen mis cosas</span></label>
+          <label class="campo-acepto"><input type="checkbox" name="cajas"> <span>Quiero comprar cajas de plástico (10 por camioneta, $1,000)</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>¿De dónde a dónde?</legend>
+        <p class="acceso-titulo">Origen</p>
+        <div class="rejilla-numeros">
+          <label class="campo">Colonia
+            <input type="text" name="origenColonia" required data-error="Escribe la colonia de origen.">
+          </label>
+          <label class="campo">Municipio
+            <select name="origen">
+              <option value="">Elige un municipio</option>
+              <option>Guadalajara</option><option>Zapopan</option><option>San Pedro Tlaquepaque</option><option>Tonalá</option><option>Tlajomulco de Zúñiga</option><option>El Salto</option><option>Ixtlahuacán de los Membrillos</option><option>Juanacatlán</option><option>Zapotlanejo</option><option>Acatlán de Juárez</option>
+              <option value="fuera">Otro (fuera de la zona)</option>
+            </select>
+          </label>
+          <label class="campo">Código postal
+            <input type="text" name="origenCP" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" placeholder="5 dígitos" required data-error="Escribe el código postal de origen a 5 dígitos.">
+          </label>
+        </div>
+        <label class="campo-acepto"><input type="checkbox" name="origenSinEstacionar"> <span>En el origen no hay estacionamiento en la entrada</span></label>
+        <p class="acceso-titulo">Destino</p>
+        <div class="rejilla-numeros">
+          <label class="campo">Colonia
+            <input type="text" name="destinoColonia" required data-error="Escribe la colonia de destino.">
+          </label>
+          <label class="campo">Municipio
+            <select name="destino">
+              <option value="">Elige un municipio</option>
+              <option>Guadalajara</option><option>Zapopan</option><option>San Pedro Tlaquepaque</option><option>Tonalá</option><option>Tlajomulco de Zúñiga</option><option>El Salto</option><option>Ixtlahuacán de los Membrillos</option><option>Juanacatlán</option><option>Zapotlanejo</option><option>Acatlán de Juárez</option>
+              <option value="fuera">Otro (fuera de la zona)</option>
+            </select>
+          </label>
+          <label class="campo">Código postal
+            <input type="text" name="destinoCP" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" placeholder="5 dígitos" required data-error="Escribe el código postal de destino a 5 dígitos.">
+          </label>
+        </div>
+        <label class="campo">El destino es
+          <select name="destinoTipo">
+            <option value="casa">Casa</option>
+            <option value="departamento">Departamento</option>
+          </select>
+        </label>
+        <div class="rejilla-numeros" data-destino-depto>
+          <label class="campo">¿En qué piso está el destino?
+            <select name="destinoPiso">
+              <option value="1">Planta baja</option><option value="2">2.º piso</option><option value="3">3.er piso</option><option value="4">4.º piso</option><option value="5">5.º piso o más</option>
+            </select>
+          </label>
+          <label class="campo-acepto"><input type="checkbox" name="destinoElevador"> <span>El edificio tiene elevador</span></label>
+        </div>
+        <label class="campo-acepto"><input type="checkbox" name="destinoSinEstacionar"> <span>En el destino no hay estacionamiento en la entrada</span></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>¿Cuándo?</legend>
+        <div class="rejilla-numeros">
+          <label class="campo">Fecha <input type="date" name="fecha"></label>
+          <label class="campo">Hora de inicio
+            <select name="horario">
+              <option>10:00</option><option>12:00</option><option>14:00</option><option>16:00</option><option>18:00</option><option>20:00</option>
+            </select>
+          </label>
+        </div>
+        <details class="supuestos" data-solo-revision>
+          <summary>Valores de prueba</summary>
+          <label class="campo">Precio de la gasolina por litro <input type="number" name="gasolina" min="0" step="0.01" inputmode="decimal"></label>
+          <label class="campo">Kilómetros reales (vacío usa el promedio) <input type="number" name="km" min="0" step="0.1" inputmode="decimal"></label>
+        </details>
+      </fieldset>
+
+      <div class="cotizador-resultado" aria-live="polite" data-resultado></div>
+
+      <fieldset>
+        <legend>Tus datos</legend>
+        <div class="rejilla-numeros">
+          <label class="campo">Nombre
+            <input type="text" name="nombre" autocomplete="name" required data-mensaje="Nombre" data-error="Escribe tu nombre.">
+          </label>
+          <label class="campo">WhatsApp
+            <input type="tel" name="whatsapp" autocomplete="tel-national" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" placeholder="10 dígitos" required data-mensaje="WhatsApp" data-error="Escribe tu WhatsApp a 10 dígitos, sin espacios.">
+          </label>
+        </div>
+      </fieldset>
+      <input type="hidden" name="solicitud" data-mensaje="Solicitud" data-resumen>
       <div class="trampa" aria-hidden="true">
         <label>No llenar este campo
           <input type="text" name="sitio" tabindex="-1" autocomplete="off" data-trampa>
         </label>
       </div>
-      <label class="campo-acepto campo-ancho">
+      <label class="campo-acepto">
+        <input type="checkbox" required data-error="Para enviar, acepta los términos y condiciones.">
+        <span>Acepto los <a href="terminos.html" target="_blank" rel="noopener">términos y condiciones</a>. Confirmo que no moveré objetos ilegales, peligrosos ni valores.</span>
+      </label>
+      <label class="campo-acepto">
         <input type="checkbox" required data-error="Para enviar, acepta el aviso de privacidad.">
         <span>Acepto el <a href="aviso-de-privacidad.html" target="_blank" rel="noopener">aviso de privacidad</a></span>
       </label>
-      <button class="boton boton-relleno boton-grande campo-ancho" type="submit">Enviar y recibir cotización</button>
-      <div class="formulario-estado campo-ancho" role="status" tabindex="-1" hidden data-formulario-estado></div>
+      <button class="boton boton-relleno boton-grande" type="submit">Enviar y recibir cotización</button>
+      <div class="formulario-estado" role="status" tabindex="-1" hidden data-formulario-estado></div>
     </form>
   </div>
 </section>
@@ -347,6 +432,7 @@
       <span>Instagram y Facebook: @mudara_mx</span>
     </div>
     <div class="pie-columna">
+      <a href="terminos.html">Términos y condiciones</a>
       <a href="aviso-de-privacidad.html">Aviso de privacidad</a>
       <span class="texto-secundario">© <span data-anio>2026</span> Mudara</span>
     </div>
@@ -361,7 +447,8 @@
   <a class="boton boton-relleno" href="#cotizar">Cotizar</a>
 </div>
 
-<script src="assets/js/config.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="assets/js/config.js?v=4"></script>
+<script src="assets/js/main.js?v=4"></script>
+<script src="assets/js/cotizador.js?v=4"></script>
 </body>
 </html>

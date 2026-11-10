@@ -21,5 +21,30 @@ window.MUDARA_CONFIG = {
 
   // true: muestra el aviso de revisión y los datos pendientes como placeholder.
   // false (al lanzar): oculta lo que siga vacío, reseñas incluidas.
-  modoRevision: true
+  modoRevision: true,
+
+  // false: el cliente no ve precios en el sitio; solo los recibe de Mudara por WhatsApp.
+  mostrarEstimacionAlCliente: true,
+
+  // Tarifas del cotizador. Los marcados [SUPUESTO] faltan por confirmar con Alex.
+  tarifas: {
+    precioCamioneta: 4500,
+    kmPorLitro: 7,
+    kmPromedio: 15,             // [SUPUESTO] distancia usada en la estimación; Alex ajusta la real
+    precioGasolina: 24,         // [SUPUESTO] actualizar cada semana
+    accesoPorCamioneta: 1000,
+    cajasPorCamioneta: 1000,    // venta de 10 cajas de plástico por camioneta
+    visitaPrevia: 600,
+    horasIncluidas: 4,          // sin embalado; dato de Alex: 3 a 4 horas
+    precioHoraExtra: null,      // [PENDIENTE] Alex
+    precioEmbalado: null,       // [PENDIENTE] Alex: costo y tiempo que agrega
+    elevadorEvitaCargo: true,   // [SUPUESTO] con elevador no se cobra el piso alto
+    maxCamionetas: 3,
+    camionetaPorEspacio: 0.25,  // [SUPUESTO] sin calibrar con mudanzas reales
+    pasoRango: 0.5,             // [SUPUESTO] redondeo del rango
+    margenRango: 0.5,           // [SUPUESTO] distancia entre los dos escenarios
+    factorLunesAJueves: 0.85,
+    factorNoche: 1.4,
+    horariosNoche: ["18:00", "20:00"]
+  }
 };
