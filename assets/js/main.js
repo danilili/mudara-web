@@ -239,8 +239,13 @@
     estado.hidden = true;
 
     enviarCotizacion(datos).then(function () {
+      // WhatsApp se ofrece solo aquí, después de llenar el cotizador.
+      var seguir = cfg.whatsapp ? {
+        href: urlWhatsApp(cfg.mensajeWhatsApp || ""), texto: "Escribirnos por WhatsApp",
+        nuevaVentana: window.innerWidth >= 768
+      } : null;
       form.reset();
-      mostrarEstado("Recibimos tus datos. Te escribiremos por WhatsApp para pedirte fotos o video de lo que vas a mover.");
+      mostrarEstado("Recibimos tus datos. Un ejecutivo de Mudara se comunicará contigo para darte una cotización más precisa.", seguir);
     }).catch(function (error) {
       // Nunca perder al cliente: se ofrece WhatsApp con sus datos ya escritos.
       var enlace = cfg.whatsapp ? {

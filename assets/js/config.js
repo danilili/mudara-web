@@ -11,7 +11,7 @@ window.MUDARA_CONFIG = {
   mostrarResenas: false,
   resenas: [],                  // [{ texto, nombre, colonia }] — solo reseñas reales
   urlResenasGoogle: "",         // enlace "Ver reseñas en Google"         [PENDIENTE]
-  mensajeWhatsApp: "Hola, quiero cotizar una mudanza.",
+  mensajeWhatsApp: "Hola, ya llené el cotizador de Mudara.",
 
   // Dirección que recibe el formulario y lo manda al correo (ver README). [PENDIENTE]
   formularioEndpoint: "",
@@ -29,22 +29,72 @@ window.MUDARA_CONFIG = {
   // Tarifas del cotizador. Los marcados [SUPUESTO] faltan por confirmar con Alex.
   tarifas: {
     precioCamioneta: 4500,
-    kmPorLitro: 7,
-    kmPromedio: 15,             // [SUPUESTO] distancia usada en la estimación; Alex ajusta la real
-    precioGasolina: 24,         // [SUPUESTO] actualizar cada semana
-    accesoPorCamioneta: 1000,
-    cajasPorCamioneta: 1000,    // venta de 10 cajas de plástico por camioneta
+    gasolinaPorCamioneta: 200,  // cuota fija por camioneta necesaria
+    accesoSinEstacionar: 500,   // por camioneta necesaria, en cada punto sin estacionamiento en la entrada
+    accesoPorPiso: 200,         // por camioneta necesaria, por cada piso que se sube o baja sin elevador, en cada punto.
+                                // [SUPUESTO] 2.º piso = 1 piso ($200), 3.er piso = 2 ($400)...; se suma al cargo de estacionamiento
+    cajasPorCamioneta: 1000,    // [SUPUESTO] renta de 10 cajas por camioneta; el dato original era precio de venta
+    cajasDiasAntes: 3,          // las cajas se entregan estos días antes de la mudanza
+    cajasDiasDespues: 3,        // y se recogen estos días después
+    vigenciaDias: 30,           // días naturales que dura una cotización
+    cargadoresPorCamionetas: { 1: 2, 2: 3, 3: 4 }, // personal según camionetas necesarias
     visitaPrevia: 600,
+    // [SUPUESTO] Carga mínima y máxima, en camionetas, según el tipo de vivienda.
+    // Es lo único que mueve el precio de la carga: Alex debe calibrarlo con mudanzas reales.
+    rangosCamionetas: {
+      "depto-soltero": [1, 1.5],
+      "depto-pareja": [1, 2],
+      "depto-familiar": [1.5, 2.5],
+      "casa-soltero": [1, 1.5],
+      "casa-pareja": [1.5, 2.5],
+      "casa-hijos": [2, 3],
+      "casa-extendida": [2.5, 3]
+    },
     horasIncluidas: 4,          // sin embalado; dato de Alex: 3 a 4 horas
     precioHoraExtra: null,      // [PENDIENTE] Alex
     precioEmbalado: null,       // [PENDIENTE] Alex: costo y tiempo que agrega
-    elevadorEvitaCargo: true,   // [SUPUESTO] con elevador no se cobra el piso alto
+    elevadorEvitaCargo: true,   // [SUPUESTO] con elevador no se cobran los pisos
     maxCamionetas: 3,
-    camionetaPorEspacio: 0.25,  // [SUPUESTO] sin calibrar con mudanzas reales
-    pasoRango: 0.5,             // [SUPUESTO] redondeo del rango
-    margenRango: 0.5,           // [SUPUESTO] distancia entre los dos escenarios
     factorLunesAJueves: 0.85,
     factorNoche: 1.4,
     horariosNoche: ["18:00", "20:00"]
+  },
+
+  // Opciones de los interiores según el tipo de vivienda. No cambian el precio:
+  // son la referencia con la que Alex afina la cotización. [SUPUESTO] textos por validar con Alex.
+  interiores: {
+    tamanos: {
+      "depto-soltero": "chico", "depto-pareja": "chico", "casa-soltero": "chico", "casa-pareja": "chico",
+      "depto-familiar": "grande", "casa-hijos": "grande", "casa-extendida": "grande"
+    },
+    recamaras: {
+      "depto-soltero": ["1 recámara", "1 recámara y cuarto de visitas", "Loft o estudio, sin recámara separada"],
+      "depto-pareja": ["1 recámara", "1 recámara y cuarto de visitas", "2 recámaras"],
+      "depto-familiar": ["2 recámaras", "3 recámaras", "4 recámaras o más"],
+      "casa-soltero": ["1 recámara", "2 recámaras", "3 recámaras"],
+      "casa-pareja": ["1 recámara", "2 recámaras", "3 recámaras"],
+      "casa-hijos": ["2 recámaras", "3 recámaras", "4 recámaras o más"],
+      "casa-extendida": ["3 recámaras", "4 recámaras", "5 recámaras o más"]
+    },
+    sala: {
+      chico: ["Sin sala", "Sala pequeña (un sillón o love seat)", "Sala completa (2 o 3 piezas)"],
+      grande: ["Sala pequeña (2 piezas)", "Sala completa (3 piezas)", "Sala grande, modular o dos salas"]
+    },
+    comedor: {
+      chico: ["Sin comedor", "Barra o mesa para 2", "Comedor de 4 sillas"],
+      grande: ["Comedor de 4 sillas", "Comedor de 6 sillas", "Comedor de 8 sillas o más"]
+    },
+    cocina: {
+      chico: ["Básica (trastes y despensa esenciales)", "Equipada (más microondas y electrodomésticos chicos)", "Completa (más vajilla, alacena y despensa abundante)"],
+      grande: ["Básica (trastes y despensa esenciales)", "Equipada (más microondas y electrodomésticos chicos)", "Completa (más vajilla, alacena y despensa abundante)"]
+    },
+    estudio: {
+      chico: ["Sin estudio", "Escritorio y silla", "Estudio completo (escritorio, libreros, archivero)"],
+      grande: ["Sin estudio", "Escritorio y silla", "Estudio completo (escritorio, libreros, archivero)"]
+    },
+    bodega: {
+      chico: ["Sin bodega ni patio", "Algunas cosas (herramienta, bicicletas)", "Bodega llena o muebles de jardín"],
+      grande: ["Sin bodega ni patio", "Algunas cosas (herramienta, bicicletas)", "Bodega llena o muebles de jardín"]
+    }
   }
 };

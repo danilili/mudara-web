@@ -213,7 +213,7 @@ input, select, textarea, button { font: inherit; }
 
 /* Contacto fijo */
 .barra-movil {
-  position: fixed; inset: auto 0 0 0; z-index: 40; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  position: fixed; inset: auto 0 0 0; z-index: 40; display: grid; grid-template-columns: 1fr; gap: 8px;
   padding: 12px var(--margen-lateral); background: var(--color-fondo); border-top: 1px solid var(--color-borde);
 }
 .whatsapp-flotante { display: none; }
@@ -289,3 +289,11 @@ input, select, textarea, button { font: inherit; }
 .desglose dt { color: var(--color-texto-secundario); }
 .desglose dd { margin: 0; text-align: right; }
 .borrador pre { margin: 0; padding: 12px; overflow-x: auto; white-space: pre-wrap; background: var(--color-fondo); border-radius: var(--radio-chico); font: inherit; font-size: .875rem; }
+
+/* Interiores del cotizador: listas largas, una por renglón en móvil y dos en pantallas anchas */
+.rejilla-interiores { display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .rejilla-interiores { grid-template-columns: 1fr 1fr; } }
+.rejilla-interiores select { width: 100%; }
+
+/* Explicación de los ajustes de precio, bajo las tarjetas de la estimación */
+.cotizador-resultado .explica { font-size: .9375rem; }
