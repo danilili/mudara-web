@@ -2,7 +2,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; scroll-padding-top: calc(var(--alto-encabezado) + 12px); -webkit-text-size-adjust: 100%; }
+html { font-size: var(--texto-base); scroll-behavior: smooth; scroll-padding-top: calc(var(--alto-encabezado) + 12px); -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
@@ -80,12 +80,6 @@ input, select, textarea, button { font: inherit; }
 }
 .encabezado-fila { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 16px; }
 .marca { display: flex; align-items: center; gap: 12px; color: inherit; text-decoration: none; }
-.marca-logo {
-  display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; flex: none;
-  border: 2px dashed var(--color-borde-fuerte); border-radius: var(--radio-chico);
-  color: var(--color-texto-secundario); font-size: .6875rem;
-}
-.marca-nombre { font-family: var(--fuente-titulos); font-size: 1.375rem; font-weight: var(--peso-titulos); letter-spacing: .08em; }
 .nav-principal { display: none; }
 .nav-principal a { text-decoration: none; font-size: .9375rem; }
 .nav-principal a:hover { text-decoration: underline; }
@@ -111,11 +105,9 @@ input, select, textarea, button { font: inherit; }
 .foto {
   position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden;
   min-height: 240px; padding: 16px; background: var(--color-placeholder);
-  border: 1px solid var(--color-placeholder-linea); border-radius: var(--radio-grande);
+  border-radius: var(--radio-grande);
 }
-.foto svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.foto line { stroke: var(--color-placeholder-linea); stroke-width: 1; vector-effect: non-scaling-stroke; }
-.foto span {
+.foto-nota {
   position: relative; padding: 6px 12px; border-radius: 6px; text-align: center;
   background: var(--color-fondo); color: var(--color-texto-secundario); font-size: .875rem;
 }
@@ -207,7 +199,6 @@ input, select, textarea, button { font: inherit; }
 .pie { border-top: 1px solid var(--color-borde); padding-block: 40px; }
 .pie-rejilla { display: grid; gap: 24px; }
 .pie-columna { display: flex; flex-direction: column; gap: 8px; font-size: .9375rem; }
-.pie-marca { font-family: var(--fuente-titulos); font-size: 1.25rem; font-weight: var(--peso-titulos); letter-spacing: .08em; }
 .texto-secundario { color: var(--color-texto-secundario); }
 .pie a { display: inline-flex; align-items: center; min-height: 24px; }
 
@@ -262,10 +253,6 @@ input, select, textarea, button { font: inherit; }
   .tarjeta { padding: 28px; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  * { transition: none !important; }
-}
 
 /* Cotizador */
 .cotizador-form { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
@@ -297,3 +284,165 @@ input, select, textarea, button { font: inherit; }
 
 /* Explicación de los ajustes de precio, bajo las tarjetas de la estimación */
 .cotizador-resultado .explica { font-size: .9375rem; }
+
+/* ==========================================================================
+   Identidad de marca (manual de Dalid): tipografía, logotipo, patrones
+   ========================================================================== */
+
+h1, h2 { letter-spacing: -.02em; }
+h3, .cotizador-form legend, .dato strong, .razones strong { font-family: var(--fuente-titulos); letter-spacing: -.01em; }
+body { line-height: 1.45; -webkit-font-smoothing: antialiased; }
+a { text-underline-offset: 3px; }
+
+/* Rótulos en mayúsculas espaciadas, como los del manual */
+.etiqueta, .boton, .nav-principal a, .menu-movil a, .aviso-revision, .acceso-titulo {
+  font-family: var(--fuente-texto); text-transform: uppercase; letter-spacing: .09em;
+}
+.etiqueta { display: inline-flex; align-items: center; gap: 10px; font-size: .9375rem; }
+.etiqueta::before { content: ""; width: 28px; height: 2px; background: currentColor; }
+.aviso-revision { font-size: .8125rem; }
+
+/* Logotipo: se pinta con el color del texto, así sirve sobre claro y oscuro */
+.logo, .arte, .cinta i {
+  display: block; background: currentColor;
+  -webkit-mask: var(--imagen) center / contain no-repeat; mask: var(--imagen) center / contain no-repeat;
+}
+.logo { --imagen: url("../img/marca/logo.svg"); width: 132px; aspect-ratio: 139.44 / 29.2; }
+.logo-lema { --imagen: url("../img/marca/logo-lema.svg"); width: 200px; aspect-ratio: 139.44 / 37.47; }
+.marca { color: var(--color-marca); transition: color .2s; }
+.marca:hover { color: var(--color-texto); }
+
+/* Encabezado: se compacta y gana sombra al bajar */
+.encabezado { transition: box-shadow .3s, border-color .3s; }
+.encabezado-fila { transition: padding .3s var(--curva); }
+.encabezado.bajando { box-shadow: 0 6px 24px var(--color-sombra); border-bottom-color: transparent; }
+.encabezado.bajando .encabezado-fila { padding-block: 10px; }
+.nav-principal a { position: relative; padding-block: 6px; font-weight: 500; font-size: .9375rem; }
+.nav-principal a:hover { text-decoration: none; }
+.nav-principal a::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: currentColor;
+  transform: scaleX(0); transform-origin: left; transition: transform .3s var(--curva);
+}
+.nav-principal a:hover::after, .nav-principal a:focus-visible::after { transform: scaleX(1); }
+
+/* Botones */
+.boton { font-weight: 600; font-size: 1rem; transition: background-color .2s, color .2s, border-color .2s, transform .2s var(--curva), box-shadow .2s; }
+.boton:hover { transform: translateY(-2px); box-shadow: 0 8px 20px var(--color-sombra); }
+.boton:active { transform: translateY(0) scale(.98); box-shadow: none; }
+.boton-grande { font-size: 1.0625rem; }
+
+/* Portada con el patrón de la marca */
+.portada { position: relative; overflow: hidden; }
+.portada > * { position: relative; }
+.portada::before, .seccion-oscura::before {
+  content: ""; position: absolute; inset: 0; background: var(--color-marca); opacity: .13; pointer-events: none;
+  -webkit-mask-image: url("../img/marca/patron-lineas.svg"), linear-gradient(to right, transparent 20%, #000 100%);
+  mask-image: url("../img/marca/patron-lineas.svg"), linear-gradient(to right, transparent 20%, #000 100%);
+  -webkit-mask-size: 340px auto, 100% 100%; mask-size: 340px auto, 100% 100%;
+  -webkit-mask-composite: source-in; mask-composite: intersect;
+}
+.seccion-oscura { position: relative; overflow: hidden; }
+.seccion-oscura > * { position: relative; }
+.seccion-oscura::before { background: var(--color-texto-sobre-oscuro); opacity: .07; }
+h1 { max-width: 12ch; }
+
+/* Espacios de foto: mientras llegan las fotos reales, llevan el universo visual de la marca */
+.foto { color: var(--color-marca); isolation: isolate; }
+.arte { position: absolute; inset: 16% 12%; }
+.arte-baul { --imagen: url("../img/marca/ilustracion-baul.svg"); }
+.arte-colchon { --imagen: url("../img/marca/ilustracion-colchon.svg"); }
+.arte-caja { --imagen: url("../img/marca/ilustracion-caja.svg"); }
+.arte-escalera { --imagen: url("../img/marca/ilustracion-escalera.svg"); }
+.arte-isotipo { --imagen: url("../img/marca/isotipo.svg"); inset: 26%; }
+.foto-bloques { background: var(--marca-negro) url("../img/marca/patron-bloques.svg") center / cover no-repeat; }
+.foto-nota {
+  position: absolute; left: 12px; bottom: 12px; right: auto; max-width: calc(100% - 24px);
+  font-size: .8125rem; text-align: left; outline: 1px dashed var(--color-pendiente-borde); outline-offset: -1px;
+}
+.galeria .foto:nth-child(2) { background: var(--marca-cafe); color: var(--marca-arena); }
+.galeria .foto:nth-child(3) { background: var(--marca-gris); color: var(--marca-arena); }
+.galeria .foto:nth-child(4) { background: var(--marca-negro); color: var(--marca-arena); }
+.foto-patron::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; background: currentColor; opacity: .22;
+  -webkit-mask: url("../img/marca/patron-lineas.svg") 0 0 / 300px auto; mask: url("../img/marca/patron-lineas.svg") 0 0 / 300px auto;
+}
+
+/* Cinta en movimiento con lo que hace Mudara */
+.cinta { overflow: hidden; background: var(--marca-negro); color: var(--marca-arena); padding-block: 14px; }
+.cinta-pista { display: flex; width: max-content; animation: cinta 36s linear infinite; }
+.cinta ul { display: flex; align-items: center; flex: none; }
+.cinta li { display: flex; align-items: center; gap: 28px; padding-right: 28px; font-weight: 500; font-size: 1rem; text-transform: uppercase; letter-spacing: .14em; white-space: nowrap; }
+.cinta i { --imagen: url("../img/marca/isotipo.svg"); width: 26px; height: 26px; flex: none; }
+@keyframes cinta { to { transform: translateX(-50%); } }
+
+/* Franja, tarjetas y pasos */
+.franja { border-bottom: 0; }
+.dato { padding-left: 16px; border-left: 2px solid var(--color-borde); }
+.dato strong { font-size: 1.375rem; }
+.tarjeta { transition: transform .3s var(--curva), box-shadow .3s, border-color .3s; }
+.rejilla-tarjetas > .tarjeta:hover { transform: translateY(-6px); box-shadow: 0 16px 36px var(--color-sombra); border-color: var(--color-borde-fuerte); }
+.icono { width: 44px; height: 44px; color: var(--color-marca); transition: transform .4s var(--curva), color .3s; }
+.tarjeta:hover .icono { transform: translateY(-3px) rotate(-6deg); color: var(--marca-cafe); }
+.numero { width: 52px; height: 52px; background: var(--marca-cafe); color: var(--marca-arena); font-family: var(--fuente-titulos); font-weight: 700; transition: transform .4s var(--curva); }
+.tarjeta:hover .numero { transform: scale(1.1) rotate(-8deg); }
+.razones li { border-left-color: var(--marca-cafe); transition: border-color .3s, padding-left .3s var(--curva); }
+.razones li:hover { padding-left: 22px; border-left-color: var(--marca-negro); }
+
+/* Preguntas */
+.preguntas-lista summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; list-style: none; font-family: var(--fuente-titulos); font-size: 1rem; transition: color .2s; }
+.preguntas-lista summary::-webkit-details-marker { display: none; }
+.preguntas-lista summary::after { content: "+"; flex: none; font-size: 1.5rem; font-weight: 500; line-height: 1; color: var(--color-marca); transition: transform .3s var(--curva); }
+.preguntas-lista details[open] summary::after { transform: rotate(45deg); }
+.preguntas-lista summary:hover { color: var(--marca-cafe); }
+.preguntas-lista details[open] p { animation: sube .4s var(--curva) both; }
+
+/* Formulario y cotizador */
+.campo, .campo-acepto, .acceso-titulo { font-size: .9375rem; }
+.campo input, .campo select, .campo textarea { transition: border-color .2s, box-shadow .2s; }
+.campo input:focus, .campo select:focus, .campo textarea:focus { outline: none; border-color: var(--marca-negro); box-shadow: 0 0 0 3px var(--marca-arena); }
+.campo-acepto input { accent-color: var(--marca-cafe); }
+.cotizador-form fieldset { transition: border-color .3s; }
+.cotizador-form fieldset:focus-within { border-color: var(--color-borde-fuerte); }
+.tarjeta.precio { border-color: var(--color-borde-fuerte); }
+.tarjeta .precio-total { letter-spacing: -.02em; }
+
+/* Pie */
+.pie { background: var(--color-fondo-pie); color: var(--marca-arena); border-top: 0; padding-block: 56px; }
+.pie .texto-secundario { color: var(--color-texto-secundario-sobre-oscuro); }
+.pie .pendiente { color: var(--marca-negro); }
+.pie a:not(.pendiente) { text-decoration-color: transparent; transition: text-decoration-color .2s; }
+.pie a:not(.pendiente):hover { text-decoration-color: currentColor; }
+.pie :focus-visible { outline-color: currentColor; }
+.pie-columna:first-child { gap: 14px; }
+
+@media (min-width: 768px) {
+  .logo { width: 150px; }
+  .cinta li { font-size: 1.0625rem; gap: 36px; padding-right: 36px; }
+}
+
+/* ==========================================================================
+   Animaciones. Solo con JavaScript activo (clase "anima" en <html>) y si la
+   persona no pidió menos movimiento.
+   ========================================================================== */
+@keyframes sube { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes entra-foto { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: none; } }
+@keyframes flota { from { transform: translateY(-5px); } to { transform: translateY(5px); } }
+
+.anima .portada-texto > * { animation: sube .8s var(--curva) both; }
+.anima .portada-texto > :nth-child(2) { animation-delay: .08s; }
+.anima .portada-texto > :nth-child(3) { animation-delay: .16s; }
+.anima .portada-texto > :nth-child(4) { animation-delay: .24s; }
+.anima .portada-texto > :nth-child(5) { animation-delay: .32s; }
+.anima .portada-texto > :nth-child(6) { animation-delay: .4s; }
+.anima .portada .foto { animation: entra-foto 1s var(--curva) .15s both; }
+.anima .arte { animation: flota 3.6s ease-in-out infinite alternate; }
+
+.anima .aparece { opacity: 0; transform: translateY(26px); transition: opacity .7s var(--curva), transform .7s var(--curva); transition-delay: var(--retraso, 0s); }
+.anima .aparece.visto { opacity: 1; transform: none; }
+/* Al terminar la entrada se quita la clase, para que el hover vuelva a responder sin retraso */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  .anima .aparece { opacity: 1; transform: none; }
+}

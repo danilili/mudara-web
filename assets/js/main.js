@@ -124,6 +124,46 @@
     });
   }
 
+  // Animaciones --------------------------------------------------------------------
+  // El contenido es visible sin JavaScript; aquí solo se agrega el movimiento.
+  var raiz = document.documentElement;
+  var pocoMovimiento = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!pocoMovimiento && "IntersectionObserver" in window) {
+    raiz.classList.add("anima");
+    var vigia = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        vigia.unobserve(el);
+        el.classList.add("visto");
+        // Al terminar se limpia, para que el hover de tarjetas y botones no herede el retraso.
+        setTimeout(function () { el.classList.remove("aparece", "visto"); el.style.removeProperty("--retraso"); }, 1400);
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+    var grupos = [
+      "main h2", ".titulo-seccion .intro", ".dato", ".rejilla-tarjetas > .tarjeta", ".equipo-rejilla .foto",
+      ".equipo-texto .intro", ".razones li", ".galeria .foto", ".cobertura-rejilla > *", ".preguntas-lista details",
+      ".cotizar-texto > *", ".cotizador-form > fieldset", ".pie-columna", ".terminos > *"
+    ];
+    document.querySelectorAll(grupos.join(",")).forEach(function (el) {
+      if (el.closest(".portada") || el.closest("[data-resultado]")) return;
+      // Los hermanos entran escalonados.
+      var hermanos = Array.prototype.filter.call(el.parentNode.children, function (h) { return h.tagName === el.tagName; });
+      var orden = hermanos.indexOf(el);
+      el.style.setProperty("--retraso", Math.min(orden, 5) * 0.08 + "s");
+      el.classList.add("aparece");
+      vigia.observe(el);
+    });
+  }
+
+  // El encabezado se compacta al bajar.
+  var encabezado = document.querySelector(".encabezado");
+  if (encabezado) {
+    var alBajar = function () { encabezado.classList.toggle("bajando", window.scrollY > 24); };
+    window.addEventListener("scroll", alBajar, { passive: true });
+    alBajar();
+  }
+
   // Datos estructurados (los campos vacíos se omiten) ------------------------------
   var ld = {
     "@context": "https://schema.org",
