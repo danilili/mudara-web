@@ -20,8 +20,8 @@
 <meta name="twitter:title" content="Mudara | Mudanzas en Jalisco">
 <meta name="twitter:description" content="Tranquilidad y confianza en tu mudanza. Cotiza en línea y recibe tu estimación al momento.">
 <meta name="twitter:image" content="https://danilili.github.io/mudara-web/assets/img/og.jpg">
-<link rel="stylesheet" href="assets/css/tokens.css?v=9">
-<link rel="stylesheet" href="assets/css/main.css?v=9">
+<link rel="stylesheet" href="assets/css/tokens.css?v=10">
+<link rel="stylesheet" href="assets/css/main.css?v=10">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -70,9 +70,12 @@
       </div>
       <p class="microcopy">Estimación al momento, sin compromiso · Un ejecutivo te contacta en <span class="pendiente" data-config="tiempoRespuesta">[X] minutos</span></p>
     </div>
-    <div class="foto foto-alta foto-bloques" role="img" aria-label="Espacio para foto real del equipo Mudara cargando con uniforme">
-      
-      <span class="foto-nota" data-solo-revision>Foto real: equipo Mudara cargando con uniforme</span>
+    <div class="foto foto-alta foto-real portada-media">
+      <video class="foto-medio" autoplay muted loop playsinline preload="metadata" width="640" height="800"
+        poster="assets/img/fotos/portada-mudara-equipo-descargando.webp"
+        aria-label="Equipo Mudara descargando un mueble embalado del camión y subiendo cajas y muebles por las escaleras" data-video-portada>
+        <source src="assets/video/portada-mudara.mp4" type="video/mp4">
+      </video>
     </div>
   </div>
 </section>
@@ -164,10 +167,10 @@
 
 <section class="seccion" aria-labelledby="equipo-titulo">
   <div class="contenedor equipo-rejilla">
-    <div class="foto foto-alta" role="img" aria-label="Espacio para retrato grupal real del equipo con el camión">
-      <span class="arte arte-colchon" aria-hidden="true"></span>
-      <span class="foto-nota" data-solo-revision>Foto real: retrato grupal del equipo con el camión</span>
-    </div>
+    <figure class="foto foto-alta foto-real">
+      <img class="foto-medio" src="assets/img/fotos/equipo-mudara-con-camion.webp" width="720" height="900" loading="lazy" decoding="async"
+        alt="Dos cargadores de Mudara con uniforme acomodan cajas en un dolly junto al camión, frente a una casa">
+    </figure>
     <div class="equipo-texto">
       <h2 id="equipo-titulo">Cualquier piso, cualquier peso</h2>
       <p class="intro">Personal calificado y equipo especializado para mover tus cosas sin golpes ni prisas.</p>
@@ -185,23 +188,40 @@
 <section class="seccion seccion-alterna" aria-labelledby="recientes-titulo">
   <div class="contenedor pila">
     <h2 id="recientes-titulo">Mudanzas recientes</h2>
+    <p class="intro">Fotos y videos reales de nuestro equipo en mudanzas en Jalisco.</p>
     <div class="galeria">
-      <div class="foto" role="img" aria-label="Espacio para foto real de un mueble envuelto">
-        <span class="arte arte-caja" aria-hidden="true"></span>
-        <span class="foto-nota" data-solo-revision>Foto real: mueble envuelto</span>
-      </div>
-      <div class="foto" role="img" aria-label="Espacio para foto real del camión cargado">
-        <span class="arte arte-baul" aria-hidden="true"></span>
-        <span class="foto-nota" data-solo-revision>Foto real: camión cargado</span>
-      </div>
-      <div class="foto" role="img" aria-label="Espacio para foto real del equipo subiendo escaleras">
-        <span class="arte arte-escalera" aria-hidden="true"></span>
-        <span class="foto-nota" data-solo-revision>Foto real: subiendo escaleras</span>
-      </div>
-      <div class="foto" role="img" aria-label="Espacio para foto real de una casa ya acomodada">
-        <span class="arte arte-colchon" aria-hidden="true"></span>
-        <span class="foto-nota" data-solo-revision>Foto real: casa ya acomodada</span>
-      </div>
+      <figure class="galeria-item">
+        <img src="assets/img/fotos/mudanza-muebles-embalados-camion.webp" width="600" height="800" loading="lazy" decoding="async" alt="Muebles envueltos con cobijas azules y emplaye, asegurados con bandas dentro del camión">
+        <figcaption><strong>Muebles embalados</strong><span>Cobijas, emplaye y bandas para que nada se raye en el camino.</span></figcaption>
+      </figure>
+      <figure class="galeria-item">
+        <img src="assets/img/fotos/equipo-subiendo-escaleras.webp" width="600" height="800" loading="lazy" decoding="async" alt="Dos cargadores de Mudara suben un mueble embalado por una escalera interior">
+        <figcaption><strong>Cualquier piso</strong><span>Subimos por escaleras con técnica y sin golpear paredes.</span></figcaption>
+      </figure>
+      <figure class="galeria-item">
+        <img src="assets/img/fotos/carga-asegurada-con-bandas.webp" width="600" height="800" loading="lazy" decoding="async" alt="Camión abierto con una pantalla en caja y muebles sujetos con bandas naranjas">
+        <figcaption><strong>Carga bien asegurada</strong><span>Pantallas y piezas grandes amarradas con bandas y dollys.</span></figcaption>
+      </figure>
+      <figure class="galeria-item">
+        <img src="assets/img/fotos/cama-armada-nuevo-hogar.webp" width="600" height="800" loading="lazy" decoding="async" alt="Cargador de Mudara con un colchón emplayado junto a una cama ya armada en la recámara nueva">
+        <figcaption><strong>Armado en tu nuevo hogar</strong><span>Desarmamos, trasladamos y dejamos la cama lista.</span></figcaption>
+      </figure>
+      <figure class="galeria-item">
+        <img src="assets/img/fotos/cajas-y-contenedores-acomodados.webp" width="600" height="800" loading="lazy" decoding="async" alt="Cajas de cartón y contenedores amarillos apilados en orden dentro del camión">
+        <figcaption><strong>Todo en su lugar</strong><span>Cajas y contenedores acomodados para aprovechar el espacio.</span></figcaption>
+      </figure>
+      <figure class="galeria-item">
+        <img src="assets/img/fotos/maniobra-mueble-pesado-con-arnes.webp" width="600" height="800" loading="lazy" decoding="async" alt="Dos cargadores maniobran un mueble grande emplayado con arneses sobre piso de mármol">
+        <figcaption><strong>Maniobras pesadas</strong><span>Arneses y dollys para mover piezas grandes sin dañar pisos.</span></figcaption>
+      </figure>
+      <figure class="galeria-item">
+        <img src="assets/img/fotos/espejos-y-piezas-grandes-protegidas.webp" width="600" height="800" loading="lazy" decoding="async" alt="Interior del camión con espejos y piezas grandes protegidas y sujetas a los costados">
+        <figcaption><strong>Piezas frágiles protegidas</strong><span>Espejos, cuadros y mesas viajan de pie y sujetos.</span></figcaption>
+      </figure>
+      <figure class="galeria-item">
+        <img src="assets/img/fotos/cajas-con-dolly-escaleras.webp" width="600" height="800" loading="lazy" decoding="async" alt="Cargadores de Mudara suben una torre de cajas en dolly por escaleras exteriores">
+        <figcaption><strong>Recolección y descarga</strong><span>Cargas con dolly de la puerta de tu casa al camión.</span></figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -478,8 +498,8 @@
   <a class="boton boton-relleno" href="#cotizar">Cotizar mi mudanza</a>
 </div>
 
-<script src="assets/js/config.js?v=9"></script>
-<script src="assets/js/main.js?v=9"></script>
-<script src="assets/js/cotizador.js?v=9"></script>
+<script src="assets/js/config.js?v=10"></script>
+<script src="assets/js/main.js?v=10"></script>
+<script src="assets/js/cotizador.js?v=10"></script>
 </body>
 </html>

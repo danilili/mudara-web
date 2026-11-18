@@ -128,6 +128,9 @@
   // El contenido es visible sin JavaScript; aquí solo se agrega el movimiento.
   var raiz = document.documentElement;
   var pocoMovimiento = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // Video de portada: si la persona pidió menos movimiento, se queda en la imagen fija.
+  var videoPortada = document.querySelector("[data-video-portada]");
+  if (videoPortada && pocoMovimiento) { videoPortada.removeAttribute("autoplay"); videoPortada.pause(); }
   if (!pocoMovimiento && "IntersectionObserver" in window) {
     raiz.classList.add("anima");
     var vigia = new IntersectionObserver(function (entradas) {
@@ -142,7 +145,7 @@
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
     var grupos = [
       "main h2", ".titulo-seccion .intro", ".dato", ".rejilla-tarjetas > .tarjeta", ".equipo-rejilla .foto",
-      ".equipo-texto .intro", ".razones li", ".galeria .foto", ".cobertura-rejilla > *", ".preguntas-lista details",
+      ".equipo-texto .intro", ".razones li", ".galeria .galeria-item", ".cobertura-rejilla > *", ".preguntas-lista details",
       ".cotizar-texto > *", ".cotizador-form > fieldset", ".pie-columna", ".terminos > *"
     ];
     document.querySelectorAll(grupos.join(",")).forEach(function (el) {

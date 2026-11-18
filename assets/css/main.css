@@ -441,6 +441,26 @@ h1 { max-width: 12ch; }
 .anima .aparece.visto { opacity: 1; transform: none; }
 /* Al terminar la entrada se quita la clase, para que el hover vuelva a responder sin retraso */
 
+/* Fotos y video reales */
+.foto-real { padding: 0; margin: 0; background: var(--marca-negro); }
+.foto-medio { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.portada-media { aspect-ratio: 4 / 5; min-height: 0; max-height: 640px; }
+.galeria-item { position: relative; margin: 0; overflow: hidden; border-radius: var(--radio); aspect-ratio: 3 / 4; background: var(--marca-negro); }
+.galeria-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--curva); }
+.galeria-item:hover img { transform: scale(1.04); }
+.galeria-item figcaption {
+  position: absolute; inset: auto 0 0 0; display: flex; flex-direction: column; gap: 2px; padding: 40px 16px 14px;
+  background: linear-gradient(to top, rgba(0,0,0,.82), rgba(0,0,0,0)); color: #fff; font-size: .875rem; line-height: 1.35;
+}
+.galeria-item figcaption strong { font-family: var(--fuente-titulos); font-size: 1.0625rem; }
+.galeria-item figcaption span { opacity: .88; }
+@media (max-width: 559px) {
+  .galeria { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .galeria-item figcaption { padding: 32px 10px 10px; }
+  .galeria-item figcaption strong { font-size: .9375rem; line-height: 1.2; }
+  .galeria-item figcaption span { display: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }

@@ -18,9 +18,33 @@ Actualiza `mudanzasRealizadas` cada mes o trimestre, redondeando hacia abajo a u
 
 Solo reseñas reales. Llena `resenas` con `{ texto, nombre, colonia }` y pon `mostrarResenas: true`.
 
-## Cambiar fotos
+## Fotos y video
 
-Sube los `.webp` a `assets/img/` y, en `index.html`, reemplaza cada bloque `<div class="foto">` por un `<img>` con `alt`, `width`, `height` y `loading="lazy"` (excepto la portada).
+Dónde viven:
+
+- `assets/img/fotos/`: las fotos, en `.webp`.
+- `assets/video/portada-mudara.mp4`: el video de la portada.
+- `assets/img/og.jpg`: la imagen que aparece al compartir el enlace (1200×630).
+
+Formato:
+
+| Dónde se usa | Archivo | Formato |
+|---|---|---|
+| Galería "Mudanzas recientes" (8 fotos) | `assets/img/fotos/*.webp` | webp, 600×800 (vertical 3:4) |
+| Foto de "Cualquier piso, cualquier peso" | `equipo-mudara-con-camion.webp` | webp, 720×900 |
+| Imagen fija de la portada | `portada-mudara-equipo-descargando.webp` | webp, 640×800 |
+| Video de la portada | `portada-mudara.mp4` | mp4 H.264, sin audio, 640×800, cerca de 900 KB |
+
+Cómo cambiar una foto:
+
+- **Lo más fácil:** sube la foto nueva con el mismo nombre y el mismo tamaño. No hay que tocar el HTML.
+- **Con otro nombre:** súbela a `assets/img/fotos/` y, en `index.html`, cambia el `src` y el `alt` del `<img>` (el `alt` describe lo que se ve en la foto). En la galería, cada foto es un `<figure class="galeria-item">`; el título y la descripción están en su `<figcaption>`.
+
+Cómo cambiar el video: reemplaza `portada-mudara.mp4` con el mismo nombre (H.264, sin audio, vertical, de preferencia menos de 1 MB) y cambia también la imagen fija, que se ve mientras carga el video y cuando la persona tiene activado "reducir movimiento".
+
+Las rutas son siempre relativas (`assets/...`, nunca `/assets/...`). Las fotos llevan `width`, `height` y `loading="lazy"`.
+
+Si cambias `og.jpg`, Facebook y WhatsApp siguen mostrando la anterior hasta que se actualiza en el [Sharing Debugger](https://developers.facebook.com/tools/debug/) con **Scrape Again**.
 
 ## Cambiar la marca
 
