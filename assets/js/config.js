@@ -5,7 +5,7 @@ window.MUDARA_CONFIG = {
   correo: "",                   // ej: "contacto@mudara.com.mx"           [PENDIENTE]
   horario: "",                  // ej: "Lunes a sábado, 8:00 a 19:00"     [PENDIENTE]
   tiempoRespuesta: "",          // ej: "15 minutos"                       [PENDIENTE]
-  anticipoPorcentaje: null,     // número, ej: 30                         [PENDIENTE]
+  anticipoPorcentaje: 20,       // número: anticipo para apartar la fecha (dato de Alex)
   mudanzasRealizadas: null,     // número, ej: 500 → se muestra "500+"    [PENDIENTE]
   ciudadesFrecuentes: [],       // ej: ["Guadalajara", "Zapopan"]         [PENDIENTE]
   mostrarResenas: false,
@@ -52,7 +52,7 @@ window.MUDARA_CONFIG = {
     },
     horasIncluidas: 4,          // sin embalado; dato de Alex: 3 a 4 horas
     precioHoraExtra: null,      // [PENDIENTE] Alex
-    precioEmbalado: null,       // [PENDIENTE] Alex: costo y tiempo que agrega
+    precioEmbalado: null,       // dato de Alex: tiene costo extra, pero el cotizador no lo calcula; se cotiza aparte
     elevadorEvitaCargo: true,   // [SUPUESTO] con elevador no se cobran los pisos
     maxCamionetas: 3,
     factorLunesAJueves: 0.85,

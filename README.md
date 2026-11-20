@@ -31,7 +31,7 @@ Formato:
 | Dónde se usa | Archivo | Formato |
 |---|---|---|
 | Galería "Mudanzas recientes" (8 fotos) | `assets/img/fotos/*.webp` | webp, 600×800 (vertical 3:4) |
-| Foto de "Cualquier piso, cualquier peso" | `equipo-mudara-con-camion.webp` | webp, 720×900 |
+| Foto de "Preparados para las mudanzas más exigentes" | `equipo-mudara-con-camion.webp` | webp, 720×900 |
 | Imagen fija de la portada | `portada-mudara-equipo-descargando.webp` | webp, 640×800 |
 | Video de la portada | `portada-mudara.mp4` | mp4 H.264, sin audio, 640×800, cerca de 900 KB |
 

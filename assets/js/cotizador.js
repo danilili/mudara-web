@@ -194,15 +194,15 @@
     return "Esta cotización tiene una vigencia de " + T.vigenciaDias + " días naturales.";
   }
 
-  // Textos de tiempo y embalado; lo que falta definir se muestra entre corchetes.
+  // Textos de tiempo y embalado. El embalado no se calcula aquí: se cotiza aparte.
   function textoTiempo() {
     var extra = T.precioHoraExtra ? pesos(T.precioHoraExtra) + " por hora" : "[precio por definir]";
     return "Incluye hasta " + T.horasIncluidas + " horas de servicio. Cada hora extra: " + extra + ".";
   }
 
   function textoEmbalado() {
-    var costo = T.precioEmbalado ? pesos(T.precioEmbalado) : "[costo y tiempo por definir]";
-    return "Embalado: " + costo + ". El embalado alarga el servicio y puede requerir horas extra.";
+    if (T.precioEmbalado) return "Embalado: " + pesos(T.precioEmbalado) + ". El embalado alarga el servicio y puede requerir horas extra.";
+    return "Embalado: tiene costo adicional y no está incluido en esta estimación; un ejecutivo te lo cotiza aparte. El embalado alarga el servicio y puede requerir horas extra.";
   }
 
   function crear(etiqueta, clase, texto) {
@@ -366,7 +366,7 @@
       salida.appendChild(crear("p", "microcopy", "Precios con IVA. " + textoTiempo() + " " + textoVigencia()));
       if (d.hayEspeciales) salida.appendChild(crear("p", "microcopy", textoEspeciales(d)));
       if (d.cajas) salida.appendChild(crear("p", "microcopy", textoCajas()));
-      if (d.embalado) salida.appendChild(crear("p", "pendiente", textoEmbalado()));
+      if (d.embalado) salida.appendChild(crear("p", "microcopy", textoEmbalado()));
       if (CFG.modoRevision) {
         var detalle = crear("details", "borrador");
         detalle.appendChild(crear("summary", "", "Ver el mensaje que revisaría Alex"));
