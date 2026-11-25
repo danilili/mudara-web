@@ -62,6 +62,8 @@ Son dos salidas independientes:
 
 Para agregar o quitar un campo, edítalo en el HTML. Si lleva `data-mensaje`, se envía solo.
 
+El servicio conectado es el workflow de n8n **Mudara - Formulario de cotización a correo**. Valida `Nombre`, `WhatsApp` (10 dígitos) y `Solicitud`, y manda el correo con Gmail. El correo destino se cambia en el nodo "Enviar correo" del workflow, no en el sitio. Solo acepta envíos desde `https://mudara.com.mx`.
+
 ## Publicación
 
 Cada commit en `main` se publica automáticamente en GitHub Pages.
@@ -70,7 +72,7 @@ Cada commit en `main` se publica automáticamente en GitHub Pages.
 
 - [ ] Quitar `<meta name="robots" content="noindex, nofollow">` de `index.html`, `aviso-de-privacidad.html` y `terminos.html`
 - [ ] Poner `modoRevision: false` y llenar `config.js`, incluido `urlSitio`
-- [ ] Conectar `formularioEndpoint` y probar que llegue el correo
+- [x] Conectar `formularioEndpoint` y probar que llegue el correo
 - [ ] Reemplazar todo lo que tenga `class="pendiente"` en los HTML
 - [ ] Publicar el texto del aviso de privacidad, mencionando el servicio que procesa el formulario
 - [x] Crear el archivo `CNAME` con el dominio y configurar el DNS (hecho: el sitio vive en https://mudara.com.mx)

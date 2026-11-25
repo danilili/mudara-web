@@ -13,8 +13,8 @@ window.MUDARA_CONFIG = {
   urlResenasGoogle: "",         // enlace "Ver reseñas en Google"         [PENDIENTE]
   mensajeWhatsApp: "Hola, ya llené el cotizador de Mudara.",
 
-  // Dirección que recibe el formulario y lo manda al correo (ver README). [PENDIENTE]
-  formularioEndpoint: "",
+  // Dirección que recibe el formulario y lo manda al correo (webhook de n8n, ver README).
+  formularioEndpoint: "https://reservalia.app.n8n.cloud/webhook/mudara-cotizacion",
 
   // Dirección final del sitio.
   urlSitio: "https://mudara.com.mx",
