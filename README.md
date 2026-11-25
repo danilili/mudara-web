@@ -73,8 +73,8 @@ Cada commit en `main` se publica automáticamente en GitHub Pages.
 - [ ] Conectar `formularioEndpoint` y probar que llegue el correo
 - [ ] Reemplazar todo lo que tenga `class="pendiente"` en los HTML
 - [ ] Publicar el texto del aviso de privacidad, mencionando el servicio que procesa el formulario
-- [ ] Crear el archivo `CNAME` con el dominio y configurar el DNS (hacerlo antes puede romper la URL de revisión)
+- [x] Crear el archivo `CNAME` con el dominio y configurar el DNS (hecho: el sitio vive en https://mudara.com.mx)
 - [ ] Llenar `sitemap.xml` y agregar `Sitemap:` en `robots.txt`
-- [ ] Cambiar las URL de `og:image` y `twitter:image` en `index.html` al dominio final
+- [x] Cambiar las URL de `og:image` y `twitter:image` en `index.html` al dominio final
 - [ ] Reemplazar `assets/img/og.jpg`, logo, fotos y mapa de Jalisco
 - [ ] Correr Lighthouse móvil sin `noindex` (objetivo: 90 o más en las cuatro categorías)

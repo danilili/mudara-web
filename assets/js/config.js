@@ -16,8 +16,8 @@ window.MUDARA_CONFIG = {
   // Dirección que recibe el formulario y lo manda al correo (ver README). [PENDIENTE]
   formularioEndpoint: "",
 
-  // Dirección final del sitio, cuando exista el dominio.                  [PENDIENTE]
-  urlSitio: "",
+  // Dirección final del sitio.
+  urlSitio: "https://mudara.com.mx",
 
   // true: muestra el aviso de revisión y los datos pendientes como placeholder.
   // false (al lanzar): oculta lo que siga vacío, reseñas incluidas.
