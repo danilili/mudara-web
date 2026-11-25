@@ -6,9 +6,9 @@ window.MUDARA_CONFIG = {
   horario: "",                  // ej: "Lunes a sábado, 8:00 a 19:00"     [PENDIENTE]
   tiempoRespuesta: "",          // ej: "15 minutos"                       [PENDIENTE]
   anticipoPorcentaje: 20,       // número: anticipo para apartar la fecha (dato de Alex)
-  mudanzasRealizadas: null,     // número, ej: 500 → se muestra "500+"    [PENDIENTE]
+  mudanzasRealizadas: null,     // omitido por ahora (decisión de Alex). Con un número, ej: 500, aparece "500+"
   ciudadesFrecuentes: [],       // ej: ["Guadalajara", "Zapopan"]         [PENDIENTE]
-  mostrarResenas: false,
+  mostrarResenas: false,        // sin reseñas por ahora: la sección no aparece
   resenas: [],                  // [{ texto, nombre, colonia }] — solo reseñas reales
   urlResenasGoogle: "",         // enlace "Ver reseñas en Google"         [PENDIENTE]
   mensajeWhatsApp: "Hola, ya llené el cotizador de Mudara.",

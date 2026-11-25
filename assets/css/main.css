@@ -441,6 +441,9 @@ h1 { max-width: 12ch; }
 .anima .aparece.visto { opacity: 1; transform: none; }
 /* Al terminar la entrada se quita la clase, para que el hover vuelva a responder sin retraso */
 
+/* Franja de datos con tres datos (sin el número de mudanzas) */
+@media (min-width: 560px) { .franja-rejilla:has(> .dato[hidden]) { grid-template-columns: repeat(3, 1fr); } }
+
 /* Fotos y video reales */
 .foto-real { padding: 0; margin: 0; background: var(--marca-negro); }
 .foto-medio { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }

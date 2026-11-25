@@ -30,6 +30,9 @@
     }
     el.textContent = formatos[clave] ? formatos[clave](valor) : valor;
     el.classList.remove("pendiente");
+    // Los bloques que nacen ocultos en el HTML (ej. mudanzas realizadas) aparecen al tener dato.
+    var oculto = el.closest("[data-config-hide-if-empty][hidden]");
+    if (oculto) oculto.hidden = false;
     if (el.tagName === "A" && clave === "correo") el.href = "mailto:" + valor;
     if (el.tagName === "A" && clave === "whatsapp") el.href = urlWhatsApp(cfg.mensajeWhatsApp || "");
   });
@@ -60,7 +63,7 @@
     });
   }
 
-  // Reseñas: solo reales; fuera de revisión la sección desaparece si no hay ------
+  // Reseñas: solo reales; sin reseñas la sección no aparece, tampoco en revisión ---
   var resenas = document.querySelector("[data-resenas]");
   if (resenas) {
     var hayResenas = cfg.mostrarResenas === true && !vacio(cfg.resenas);
@@ -80,8 +83,6 @@
       });
       var nota = resenas.querySelector("[data-resenas-nota]");
       if (nota) nota.remove();
-      resenas.hidden = false;
-    } else if (revision) {
       resenas.hidden = false;
     } else {
       resenas.remove();
